@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>yea-joyyy 的个人网站</title>
+
+  <style>
+    body {
+      font-family: Arial, "黑体", sans-serif;
+      /* 1. 你的要求：背景设为浅蓝绿色 
+      */
+      background-color: #e0f2f1; /* 这是一个好看的浅蓝绿色 */
+      color: #333;
+      padding-top: 60px;
+    }
+
+    /* 2. 你的要求：排版 (头像在左，文字在右)
+      我们来修改 .container
+    */
+    .container {
+      /* 关键！启用 Flexbox 布局 */
+      display: flex; 
+      /* 让头像和文字块垂直居中对齐 */
+      align-items: center; 
+      /* 在头像和文字之间留出 30px 的间隙 */
+      gap: 30px;
+
+      /* --- 以下是旧的卡片样式，保持不变 --- */
+      width: 90%;
+      max-width: 700px; /* 我把卡片改宽了一点，以容纳左右布局 */
+      margin: 0 auto;
+      padding: 40px; /* 內边距也增大一点 */
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      
+      /* 我们不再强行让卡片里的所有东西都居中
+        ( text-align: center; 这一行被我们删掉了)
+      */
+    }
+
+    /* 3. 新增一个 .text-column 样式 
+      让文字栏里的文字都左对齐
+    */
+    .text-column {
+      text-align: left;
+    }
+
+
+    /* --- 以下是旧的样式，保持不变 --- */
+    
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      /* 我们不再需要 margin-bottom，因为 Flexbox 会处理间距
+        ( margin-bottom: 20px; 这一行被我们删掉了)
+      */
+    }
+
+    h1 {
+      color: #333;
+      /* 让标题和下面的文字挨得近一点 */
+      margin-bottom: 10px; 
+    }
+
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      color: #004499;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="container">
+    
+    <div class="avatar-column">
+      <img src="images/avatar.jpg" alt="我的头像" class="avatar">
+    </div>
+
+    <div class="text-column">
+      
+      <h1>This is my first website!</h2>
+      <p>My name is yea！</h2>
+      
+      <h2>Hi!</h2>
+      <p>
+  This is a wonderful website created by my lovely boy
+  <a href="https://angziii.github.io">https://angziii.github.io</a>
+  
+</p>
+      
+    </div> </div> </body>
+</html>
