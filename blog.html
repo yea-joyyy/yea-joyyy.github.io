@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — yea-joyyy</title>
+  <meta name="description" content="yea-joyyy's personal blog — thoughts, travel, and more.">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, "黑体", sans-serif;
+      background-color: #e0f2f1;
+      color: #333;
+      padding-top: 90px;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    /* ── 导航栏（与 index.html 保持一致） ── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      background: rgba(250, 248, 245, 0.75);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1px solid rgba(220, 210, 195, 0.5);
+      box-shadow: 0 2px 16px rgba(180, 160, 130, 0.12);
+    }
+    .navbar-inner {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px;
+      background: rgba(255, 252, 248, 0.5);
+      border: 1px solid rgba(220, 210, 195, 0.45);
+      border-radius: 999px;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+    .navbar a {
+      position: relative;
+      z-index: 1;
+      padding: 7px 20px;
+      border-radius: 999px;
+      color: #5a5248;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.25s ease;
+    }
+    .navbar a:hover,
+    .navbar a.active { color: #2e2a26; }
+    .glass-pill {
+      position: absolute;
+      top: 6px; left: 6px;
+      height: calc(100% - 12px);
+      border-radius: 999px;
+      background: rgba(255, 252, 248, 0.85);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(220, 210, 195, 0.7);
+      box-shadow: 0 2px 8px rgba(180,160,130,0.18), inset 0 1px 0 rgba(255,255,255,0.8);
+      transition: left 0.35s cubic-bezier(0.34,1.56,0.64,1),
+                  width 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      pointer-events: none;
+    }
+
+    /* ── 页面主区域 ── */
+    .page-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .page-header {
+      margin-bottom: 40px;
+    }
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #2e2a26;
+      margin: 0 0 6px;
+    }
+    .page-header p {
+      color: #7a7068;
+      font-size: 15px;
+      margin: 0;
+    }
+
+    /* ── 卡片网格 ── */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .post-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+      border: 1px solid rgba(220, 210, 195, 0.4);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    }
+
+    .post-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      background: #e0f2f1;
+      color: #3d7a6e;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .post-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #2e2a26;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .post-card-excerpt {
+      font-size: 14px;
+      color: #6b6258;
+      line-height: 1.6;
+      margin: 0;
+      flex: 1;
+    }
+
+    .post-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #a09890;
+      margin-top: 4px;
+    }
+    .read-more-hint {
+      font-size: 12px;
+      color: #3d7a6e;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .read-more-hint::after {
+      content: "→";
+      transition: transform 0.2s;
+    }
+    .post-card:hover .read-more-hint::after {
+      transform: translateX(3px);
+    }
+
+    /* ── 空状态 ── */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: #a09890;
+    }
+    .empty-state svg {
+      width: 64px; height: 64px;
+      margin-bottom: 16px;
+      opacity: 0.4;
+    }
+
+    /* ── Modal 阅读层 ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: rgba(40, 36, 30, 0.45);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-sheet {
+      background: #fffcf8;
+      width: 100%;
+      max-width: 760px;
+      max-height: 90vh;
+      border-radius: 24px 24px 0 0;
+      overflow-y: auto;
+      padding: 0 0 60px;
+      transform: translateY(40px);
+      transition: transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
+      box-shadow: 0 -8px 48px rgba(0,0,0,0.18);
+    }
+    .modal-overlay.open .modal-sheet {
+      transform: translateY(0);
+    }
+
+    .modal-handle-bar {
+      display: flex;
+      justify-content: center;
+      padding: 14px 0 8px;
+    }
+    .modal-handle-bar span {
+      width: 40px; height: 4px;
+      background: rgba(160,150,140,0.35);
+      border-radius: 999px;
+    }
+
+    .modal-header {
+      padding: 8px 32px 20px;
+      border-bottom: 1px solid rgba(220,210,195,0.5);
+    }
+    .modal-header-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2e2a26;
+      margin: 0 0 8px;
+      line-height: 1.35;
+    }
+    .modal-meta {
+      font-size: 13px;
+      color: #a09890;
+    }
+
+    .modal-body {
+      padding: 28px 32px 0;
+      line-height: 1.75;
+      color: #3d3530;
+      font-size: 15px;
+    }
+    .modal-body h1, .modal-body h2, .modal-body h3 {
+      color: #2e2a26;
+      margin-top: 1.6em;
+      margin-bottom: 0.4em;
+    }
+    .modal-body h1 { font-size: 1.4rem; }
+    .modal-body h2 { font-size: 1.2rem; }
+    .modal-body h3 { font-size: 1.05rem; }
+    .modal-body p { margin: 0 0 1em; }
+    .modal-body ul, .modal-body ol {
+      padding-left: 1.5em;
+      margin: 0 0 1em;
+    }
+    .modal-body li { margin-bottom: 0.3em; }
+    .modal-body blockquote {
+      margin: 1em 0;
+      padding: 12px 20px;
+      background: #f0faf8;
+      border-left: 4px solid #80cbc4;
+      border-radius: 0 8px 8px 0;
+      color: #5a6e6b;
+      font-style: italic;
+    }
+    .modal-body code {
+      background: #f4f2ee;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.9em;
+    }
+    .modal-body pre {
+      background: #2e2a26;
+      color: #e8e0d8;
+      padding: 16px 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 0.88em;
+    }
+    .modal-body pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+    .modal-body strong { color: #2e2a26; }
+    .modal-body a { color: #3d7a6e; }
+    .modal-body hr {
+      border: none;
+      border-top: 1px solid rgba(220,210,195,0.5);
+      margin: 2em 0;
+    }
+
+    .modal-close {
+      position: sticky;
+      top: 16px;
+      float: right;
+      margin: 16px 24px 0 0;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(220,210,195,0.5);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #5a5248;
+      transition: background 0.2s;
+      z-index: 10;
+    }
+    .modal-close:hover {
+      background: rgba(200,185,170,0.7);
+    }
+
+    /* ── 响应式 ── */
+    @media (max-width: 600px) {
+      body { padding-top: 80px; }
+      .page-wrapper { padding: 24px 16px 60px; }
+      .page-header h1 { font-size: 1.5rem; }
+      .posts-grid { grid-template-columns: 1fr; gap: 16px; }
+      .modal-sheet { max-height: 95vh; border-radius: 20px 20px 0 0; }
+      .modal-header, .modal-body { padding-left: 20px; padding-right: 20px; }
+      .modal-title { font-size: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div class="glass-pill" id="glassPill"></div>
+      <a href="index.html" data-nav>Home</a>
+      <a href="#projects" data-nav>Projects</a>
+      <a href="#hobbies" data-nav>Hobbies</a>
+      <a href="#travel" data-nav>Travel</a>
+      <a href="blog.html" class="active" data-nav>Blog</a>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="page-header">
+      <h1>Blog</h1>
+      <p>Thoughts, stories, and things worth sharing.</p>
+    </div>
+    <div class="posts-grid" id="postsGrid">
+      <p style="color:#a09890;">Loading posts…</p>
+    </div>
+  </div>
+
+  <!-- Modal 阅读层 -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-sheet" id="modalSheet">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <div class="modal-handle-bar"><span></span></div>
+      <div class="modal-header">
+        <div class="modal-header-tags" id="modalTags"></div>
+        <h1 class="modal-title" id="modalTitle"></h1>
+        <div class="modal-meta" id="modalMeta"></div>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    /* ── 导航胶囊 ── */
+    const pill   = document.getElementById('glassPill');
+    const links  = document.querySelectorAll('[data-nav]');
+    const inner  = document.querySelector('.navbar-inner');
+
+    function movePill(el) {
+      const iR = inner.getBoundingClientRect();
+      const eR = el.getBoundingClientRect();
+      pill.style.left  = (eR.left - iR.left) + 'px';
+      pill.style.width = eR.width + 'px';
+    }
+
+    const activeLink = document.querySelector('[data-nav].active');
+    if (activeLink) {
+      requestAnimationFrame(() => {
+        pill.style.transition = 'none';
+        movePill(activeLink);
+        requestAnimationFrame(() => { pill.style.transition = ''; });
+      });
+    }
+
+    links.forEach(link => {
+      link.addEventListener('mouseenter', () => movePill(link));
+      link.addEventListener('click', () => {
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+
+    inner.addEventListener('mouseleave', () => {
+      const cur = document.querySelector('[data-nav].active');
+      if (cur) movePill(cur);
+    });
+
+    /* ── 工具函数 ── */
+    function readingTime(text) {
+      const words = text.trim().split(/\s+/).length;
+      return Math.max(1, Math.ceil(words / 200));
+    }
+
+    function formatDate(iso) {
+      return new Date(iso).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+    }
+
+    function tagsHtml(tags) {
+      return tags.map(t => `<span class="tag">${t}</span>`).join('');
+    }
+
+    /* ── 渲染卡片 ── */
+    function renderPosts(posts) {
+      const grid = document.getElementById('postsGrid');
+      if (!posts.length) {
+        grid.innerHTML = `<div class="empty-state"><p>No posts yet. Check back soon!</p></div>`;
+        return;
+      }
+      grid.innerHTML = posts.map(post => `
+        <article class="post-card" data-id="${post.id}" role="button" tabindex="0"
+          aria-label="Read: ${post.title}">
+          <div class="post-card-tags">${tagsHtml(post.tags)}</div>
+          <h2 class="post-card-title">${post.title}</h2>
+          <p class="post-card-excerpt">${post.excerpt}</p>
+          <div class="post-card-meta">
+            <span>${formatDate(post.date)} · ${readingTime(post.content)} min read</span>
+            <span class="read-more-hint">Read</span>
+          </div>
+        </article>
+      `).join('');
+
+      grid.querySelectorAll('.post-card').forEach(card => {
+        const open = () => openModal(posts.find(p => p.id === card.dataset.id));
+        card.addEventListener('click', open);
+        card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') open(); });
+      });
+    }
+
+    /* ── Modal ── */
+    const overlay = document.getElementById('modalOverlay');
+    const sheet   = document.getElementById('modalSheet');
+
+    function openModal(post) {
+      document.getElementById('modalTitle').textContent = post.title;
+      document.getElementById('modalTags').innerHTML = tagsHtml(post.tags);
+      document.getElementById('modalMeta').textContent =
+        `${formatDate(post.date)} · ${readingTime(post.content)} min read`;
+      document.getElementById('modalBody').innerHTML = marked.parse(post.content);
+      sheet.scrollTop = 0;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    /* ── 加载 posts.json ── */
+    fetch('posts.json')
+      .then(r => r.json())
+      .then(renderPosts)
+      .catch(() => {
+        document.getElementById('postsGrid').innerHTML =
+          '<p style="color:#c0392b;">Could not load posts. Please try again later.</p>';
+      });
+  </script>
+
+</body>
+</html>

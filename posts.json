@@ -1,0 +1,18 @@
+[
+  {
+    "id": "hello-world",
+    "title": "Hello World — My First Post",
+    "date": "2026-02-22",
+    "tags": ["life", "personal"],
+    "excerpt": "Welcome to my blog! This is where I share thoughts, experiences, and things I find interesting.",
+    "content": "# Hello World — My First Post\n\nWelcome to my blog! 🎉\n\nThis is my very first post. I built this website from scratch and I'm super excited to share things here.\n\n## What to expect\n\n- **Personal thoughts** — things on my mind\n- **Travel stories** — adventures and places I've been\n- **Hobbies** — stuff I enjoy doing\n\nStay tuned for more posts. Thanks for visiting!"
+  },
+  {
+    "id": "why-i-built-this",
+    "title": "Why I Built This Website",
+    "date": "2026-02-20",
+    "tags": ["web", "personal"],
+    "excerpt": "A little backstory on why I decided to make my own corner of the internet.",
+    "content": "# Why I Built This Website\n\nEveryone should have a little corner of the internet that's truly their own.\n\n## The reason\n\nI wanted a place to:\n\n1. Share what I'm thinking\n2. Document things I've learned\n3. Have something to point people to\n\n## What I used\n\nJust plain **HTML**, **CSS**, and a little **JavaScript** — no fancy frameworks. Hosted for free on GitHub Pages.\n\n> *\"The best project is the one you actually finish.\"*\n\nHope you enjoy the site!"
+  }
+]
