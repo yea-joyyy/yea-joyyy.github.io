@@ -1,0 +1,92 @@
+[
+  {
+    "id": "photography",
+    "name": "Photography",
+    "color": "#c8b8d8",
+    "preview": [
+      "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=300&q=80",
+      "https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?w=300&q=80"
+    ],
+    "items": [
+      { "type": "image", "src": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&q=80", "caption": "Golden hour" },
+      { "type": "image", "src": "https://images.unsplash.com/photo-1502982720700-bfff97f2ecac?w=600&q=80", "caption": "Street life" },
+      { "type": "image", "src": "https://images.unsplash.com/photo-1495121553079-4c61bcce1894?w=600&q=80", "caption": "Minimal" },
+      { "type": "note", "text": "I love hunting for quiet moments in busy places 📷" }
+    ]
+  },
+  {
+    "id": "reading",
+    "name": "Reading",
+    "color": "#b0c4b4",
+    "preview": [
+      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=300&q=80",
+      "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&q=80"
+    ],
+    "items": [
+      { "type": "note", "text": "Currently reading: **The Midnight Library** by Matt Haig" },
+      { "type": "image", "src": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&q=80", "caption": "My reading corner" },
+      { "type": "link", "url": "https://www.goodreads.com", "label": "Goodreads shelf →" },
+      { "type": "note", "text": "Favourites: Piranesi, Norwegian Wood, The Alchemist" }
+    ]
+  },
+  {
+    "id": "cooking",
+    "name": "Cooking",
+    "color": "#d4bca8",
+    "preview": [
+      "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=300&q=80",
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&q=80"
+    ],
+    "items": [
+      { "type": "image", "src": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80", "caption": "Baked goods" },
+      { "type": "image", "src": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80", "caption": "Homemade pasta" },
+      { "type": "note", "text": "Specialty: sourdough bread and anything with garlic 🧄" },
+      { "type": "link", "url": "https://www.seriouseats.com", "label": "Favourite recipes →" }
+    ]
+  },
+  {
+    "id": "music",
+    "name": "Music",
+    "color": "#a8c0d4",
+    "preview": [
+      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&q=80",
+      "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&q=80"
+    ],
+    "items": [
+      { "type": "note", "text": "Playing guitar since I was 14 🎸" },
+      { "type": "image", "src": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&q=80", "caption": "Late night sessions" },
+      { "type": "link", "url": "https://open.spotify.com", "label": "My Spotify playlist →" },
+      { "type": "note", "text": "Current obsession: City pop & ambient jazz" }
+    ]
+  },
+  {
+    "id": "plants",
+    "name": "Plants",
+    "color": "#a8c8c4",
+    "preview": [
+      "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=300&q=80",
+      "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&q=80"
+    ],
+    "items": [
+      { "type": "image", "src": "https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=600&q=80", "caption": "My balcony jungle" },
+      { "type": "image", "src": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80", "caption": "New propagations" },
+      { "type": "note", "text": "Currently raising: monstera, pothos, string of pearls 🌿" },
+      { "type": "note", "text": "Pro tip: most plants just want less water than you think" }
+    ]
+  },
+  {
+    "id": "film",
+    "name": "Film & Series",
+    "color": "#c4a8bc",
+    "preview": [
+      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=300&q=80",
+      "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=300&q=80"
+    ],
+    "items": [
+      { "type": "note", "text": "All-time faves: In the Mood for Love, Amélie, Parasite 🎬" },
+      { "type": "image", "src": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&q=80", "caption": "Cinema nights" },
+      { "type": "link", "url": "https://letterboxd.com", "label": "Letterboxd →" },
+      { "type": "note", "text": "Currently watching: The Bear (S3)" }
+    ]
+  }
+]
