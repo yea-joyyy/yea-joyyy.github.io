@@ -1,0 +1,56 @@
+[
+  {
+    "id": "paris-2024",
+    "title": "Paris, France",
+    "date": "2024-07-10",
+    "country": "France",
+    "city": "Paris",
+    "lat": 48.8566,
+    "lng": 2.3522,
+    "coverImage": "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80",
+    "tags": ["Europe", "City", "Architecture"],
+    "excerpt": "The city of light never disappoints — croissants, cobblestones, and endless wandering.",
+    "content": "# Paris, France\n\nThere's something about Paris that makes you feel like you're living inside a painting.\n\n## Highlights\n\n- **Musée d'Orsay** — better than the Louvre, fight me\n- **Le Marais** — the best neighbourhood for wandering with no plan\n- **Café de Flore** — overpriced but worth it once\n- **Seine at sunset** — absolutely free and absolutely magic\n\n## Food\n\nI ate a croissant every single morning. No regrets.\n\n> *\"Paris is always a good idea.\"* — Audrey Hepburn\n\n## Tips\n\n1. Get a Navigo pass for unlimited metro\n2. Book popular museums in advance\n3. Most parks are free and wonderful",
+    "photos": [
+      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80",
+      "https://images.unsplash.com/photo-1431274172761-fca41d930114?w=600&q=80",
+      "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=80"
+    ]
+  },
+  {
+    "id": "tokyo-2023",
+    "title": "Tokyo, Japan",
+    "date": "2023-11-03",
+    "country": "Japan",
+    "city": "Tokyo",
+    "lat": 35.6762,
+    "lng": 139.6503,
+    "coverImage": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80",
+    "tags": ["Asia", "City", "Food"],
+    "excerpt": "Neon lights, ramen at midnight, and the most efficient trains on earth.",
+    "content": "# Tokyo, Japan\n\nTokyo is organised chaos — every neighbourhood feels like a different city.\n\n## Neighbourhoods\n\n- **Shimokitazawa** — vintage shops and live music\n- **Yanaka** — old Tokyo vibes, cats everywhere\n- **Shinjuku at night** — overwhelming in the best way\n- **Harajuku** — street fashion like nowhere else\n\n## Food\n\nI ate at a different ramen spot every day. The conveyor belt sushi was better than any sushi I'd had before.\n\n## Getting Around\n\nThe train system is intimidating at first but once you get it, it's the best in the world. Get a Suica card on day one.",
+    "photos": [
+      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80",
+      "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=600&q=80",
+      "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=600&q=80"
+    ]
+  },
+  {
+    "id": "amalfi-2023",
+    "title": "Amalfi Coast, Italy",
+    "date": "2023-06-18",
+    "country": "Italy",
+    "city": "Positano",
+    "lat": 40.6281,
+    "lng": 14.4846,
+    "coverImage": "https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80",
+    "tags": ["Europe", "Coast", "Summer"],
+    "excerpt": "Cliffside villages, impossibly blue water, and limoncello at every turn.",
+    "content": "# Amalfi Coast, Italy\n\nProbably the most beautiful coastline I've ever seen.\n\n## The Drive\n\nThe road along the coast is terrifying and spectacular in equal measure. Hire a scooter if you dare.\n\n## Positano\n\nEverything is on a steep hill. Your legs will ache. It's worth it.\n\n## Ravello\n\nQuieter than Positano, with incredible views from the Villa Cimbrone gardens.\n\n## What to Eat\n\n- Fresh pasta with clams\n- Sfogliatelle from any bakery\n- Limoncello — the local lemons are something else",
+    "photos": [
+      "https://images.unsplash.com/photo-1555993539-1732b0258235?w=600&q=80",
+      "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=80",
+      "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&q=80"
+    ]
+  }
+]
