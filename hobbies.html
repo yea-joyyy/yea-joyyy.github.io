@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hobbies — yea-joyyy</title>
   <meta name="description" content="Things I love doing.">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; }
@@ -95,266 +94,30 @@
       margin: 0;
     }
 
-    /* ── Folder grid ── */
-    .folder-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 32px 24px;
+    .empty-state {
+      max-width: 520px;
+      padding: 32px 28px;
+      border-radius: 24px;
+      background: rgba(255, 252, 248, 0.88);
+      border: 1px solid rgba(220,210,195,0.65);
+      box-shadow: 0 14px 36px rgba(120, 110, 95, 0.12);
     }
-
-    /* ── Folder card ── */
-    .folder-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
-      gap: 10px;
-    }
-
-    .folder-card {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 4 / 3.2;
-      transition: transform 0.22s cubic-bezier(0.34,1.4,0.64,1);
-    }
-    .folder-wrap:hover .folder-card {
-      transform: translateY(-6px) scale(1.03);
-    }
-    .folder-wrap:active .folder-card {
-      transform: scale(0.97);
-    }
-
-    /* folder body */
-    .folder-body {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 82%;
-      border-radius: 0 12px 16px 16px;
-      box-shadow:
-        0 6px 24px rgba(0,0,0,0.12),
-        0 1px 4px rgba(0,0,0,0.06),
-        inset 0 1px 0 rgba(255,255,255,0.55);
-      border: 1px solid rgba(255,255,255,0.45);
-    }
-
-    /* folder tab (ear) */
-    .folder-tab {
-      position: absolute;
-      top: 0; left: 14px;
-      width: 38%;
-      height: 22%;
-      border-radius: 8px 8px 0 0;
-      opacity: 0.85;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
-    }
-
-    /* preview images peeking out */
-    .folder-preview {
-      position: absolute;
-      bottom: 38%; left: 50%;
-      transform: translateX(-50%);
-      width: 78%;
-      height: 52%;
-      pointer-events: none;
-    }
-    .preview-img {
-      position: absolute;
-      width: 68%;
-      height: 80%;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 2px solid rgba(255,255,255,0.8);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
-    }
-    .preview-img:first-child {
-      left: 0; top: 0;
-      transform: rotate(-6deg);
-      z-index: 2;
-    }
-    .preview-img:last-child {
-      right: 0; top: 6%;
-      transform: rotate(5deg);
-      z-index: 1;
-    }
-    .preview-img:only-child {
-      left: 50%; top: 0;
-      transform: translateX(-50%) rotate(-2deg);
-      z-index: 2;
-    }
-
-    /* folder bottom info */
-    .folder-info {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 36%;
-      display: flex;
-      align-items: center;
-      padding: 0 14px;
-    }
-    .folder-count {
-      font-size: 11px;
-      font-weight: 600;
-      color: rgba(60,40,30,0.55);
-      letter-spacing: 0.02em;
-    }
-
-    /* label below folder */
-    .folder-label {
-      font-size: 13px;
-      font-weight: 700;
+    .empty-state h2 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
       color: #2e2a26;
-      text-align: center;
-      line-height: 1.3;
     }
-
-    /* ── Modal ── */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 600;
-      background: rgba(40,36,30,0.4);
-      -webkit-backdrop-filter: blur(6px);
-      backdrop-filter: blur(6px);
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    .modal-overlay.open { opacity: 1; pointer-events: all; }
-
-    .modal-sheet {
-      background: #fffcf8;
-      width: 100%;
-      max-width: 700px;
-      max-height: 88vh;
-      border-radius: 24px 24px 0 0;
-      overflow-y: auto;
-      padding-bottom: 60px;
-      transform: translateY(40px);
-      transition: transform 0.35s cubic-bezier(0.34,1.2,0.64,1);
-      box-shadow: 0 -8px 48px rgba(0,0,0,0.16);
-    }
-    .modal-overlay.open .modal-sheet { transform: translateY(0); }
-
-    .modal-handle { display: flex; justify-content: center; padding: 14px 0 8px; }
-    .modal-handle span {
-      width: 40px; height: 4px;
-      background: rgba(160,150,140,0.35);
-      border-radius: 999px;
-    }
-
-    .modal-header {
-      padding: 4px 28px 18px;
-      border-bottom: 1px solid rgba(220,210,195,0.5);
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .modal-folder-dot {
-      width: 18px; height: 18px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .modal-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #2e2a26;
+    .empty-state p {
       margin: 0;
-    }
-
-    .modal-close {
-      position: sticky;
-      top: 16px;
-      float: right;
-      margin: 16px 20px 0 0;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(220,210,195,0.5);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      color: #5a5248;
-      transition: background 0.2s;
-      z-index: 10;
-    }
-    .modal-close:hover { background: rgba(200,185,170,0.7); }
-
-    .modal-items {
-      padding: 22px 28px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    /* image item */
-    .item-image-wrap {
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
-    }
-    .item-image {
-      width: 100%;
-      max-height: 260px;
-      object-fit: cover;
-      display: block;
-    }
-    .item-caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(30,24,20,0.55));
-      color: rgba(255,255,255,0.92);
-      font-size: 12px;
-      padding: 20px 14px 10px;
-    }
-
-    /* note item */
-    .item-note {
-      background: #f5f2ec;
-      border-radius: 14px;
-      padding: 16px 18px;
-      font-size: 14px;
-      line-height: 1.65;
-      color: #4a4038;
-    }
-    .item-note p { margin: 0; }
-    .item-note strong { color: #2e2a26; }
-
-    /* link item */
-    .item-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: #f0faf8;
-      border: 1px solid rgba(128,203,196,0.4);
-      border-radius: 14px;
-      padding: 14px 18px;
-      text-decoration: none;
-      color: #2e7a6e;
-      font-size: 14px;
-      font-weight: 600;
-      transition: background 0.2s;
-    }
-    .item-link:hover { background: #e0f5f2; }
-    .item-link::before {
-      content: "🔗";
-      font-size: 16px;
-      flex-shrink: 0;
+      color: #7a7068;
+      font-size: 15px;
+      line-height: 1.7;
     }
 
     /* ── Responsive ── */
     @media (max-width: 560px) {
-      .folder-grid { grid-template-columns: repeat(2, 1fr); gap: 28px 16px; }
       .page-wrapper { padding: 32px 18px 80px; }
-      .modal-sheet { max-height: 92vh; }
-      .modal-header, .modal-items { padding-left: 18px; padding-right: 18px; }
-    }
-    @media (max-width: 360px) {
-      .folder-grid { grid-template-columns: repeat(2, 1fr); }
+      .empty-state { padding: 24px 20px; }
     }
   </style>
 </head>
@@ -374,23 +137,11 @@
   <div class="page-wrapper">
     <div class="page-header">
       <h1>Hobbies</h1>
-      <p>Things I love, collected into little folders.</p>
+      <p>A simple page for things I enjoy.</p>
     </div>
-    <div class="folder-grid" id="folderGrid">
-      <p style="color:#a09890;">Loading…</p>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal-sheet" id="modalSheet">
-      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
-      <div class="modal-handle"><span></span></div>
-      <div class="modal-header">
-        <div class="modal-folder-dot" id="modalDot"></div>
-        <h2 class="modal-title" id="modalTitle"></h2>
-      </div>
-      <div class="modal-items" id="modalItems"></div>
+    <div class="empty-state">
+      <h2>Folders removed</h2>
+      <p>This section is temporarily empty. I will add new hobby content here later.</p>
     </div>
   </div>
 
@@ -425,94 +176,6 @@
       const cur = document.querySelector('[data-nav].active');
       if (cur) movePill(cur);
     });
-
-    /* ── Render folders ── */
-    function darken(hex, amt) {
-      let [r,g,b] = hex.match(/\w\w/g).map(x=>parseInt(x,16));
-      return `rgba(${Math.max(0,r-amt)},${Math.max(0,g-amt)},${Math.max(0,b-amt)},0.9)`;
-    }
-
-    function renderFolders(hobbies) {
-      const grid = document.getElementById('folderGrid');
-      grid.innerHTML = hobbies.map(h => {
-        const previewImgs = (h.preview || []).slice(0, 2).map(src =>
-          `<img class="preview-img" src="${src}" alt="" loading="lazy">`
-        ).join('');
-
-        return `
-          <div class="folder-wrap" data-id="${h.id}" role="button" tabindex="0"
-               aria-label="Open ${h.name}">
-            <div class="folder-card">
-              <div class="folder-tab" style="background:${darken(h.color,14)}"></div>
-              <div class="folder-body" style="background:${h.color}"></div>
-              <div class="folder-preview">${previewImgs}</div>
-              <div class="folder-info">
-                <span class="folder-count">${h.items.length} items</span>
-              </div>
-            </div>
-            <div class="folder-label">${h.name}</div>
-          </div>
-        `;
-      }).join('');
-
-      grid.querySelectorAll('.folder-wrap').forEach(wrap => {
-        const open = () => openModal(hobbies.find(h => h.id === wrap.dataset.id));
-        wrap.addEventListener('click', open);
-        wrap.addEventListener('keydown', e => {
-          if (e.key === 'Enter' || e.key === ' ') open();
-        });
-      });
-    }
-
-    /* ── Modal ── */
-    const overlay = document.getElementById('modalOverlay');
-    const sheet   = document.getElementById('modalSheet');
-
-    function renderItems(items) {
-      return items.map(item => {
-        if (item.type === 'image') {
-          return `
-            <div class="item-image-wrap">
-              <img class="item-image" src="${item.src}" alt="${item.caption || ''}" loading="lazy">
-              ${item.caption ? `<div class="item-caption">${item.caption}</div>` : ''}
-            </div>`;
-        }
-        if (item.type === 'note') {
-          return `<div class="item-note">${marked.parse(item.text)}</div>`;
-        }
-        if (item.type === 'link') {
-          return `<a class="item-link" href="${item.url}" target="_blank" rel="noopener">${item.label}</a>`;
-        }
-        return '';
-      }).join('');
-    }
-
-    function openModal(hobby) {
-      document.getElementById('modalDot').style.background = hobby.color;
-      document.getElementById('modalTitle').textContent = hobby.name;
-      document.getElementById('modalItems').innerHTML = renderItems(hobby.items);
-      sheet.scrollTop = 0;
-      overlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      overlay.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    document.getElementById('modalClose').addEventListener('click', closeModal);
-    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-    /* ── Load data ── */
-    fetch('hobbies.json')
-      .then(r => r.json())
-      .then(renderFolders)
-      .catch(() => {
-        document.getElementById('folderGrid').innerHTML =
-          '<p style="color:#c0392b;">Could not load hobbies data.</p>';
-      });
   </script>
 
 </body>
