@@ -12,78 +12,12 @@
       background-color: #e0f2f1;
       color: #333;
       margin: 0;
-      padding-top: 90px;
-    }
-
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 60px;
-      background: rgba(250, 248, 245, 0.75);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      backdrop-filter: blur(16px) saturate(180%);
-      border-bottom: 1px solid rgba(220, 210, 195, 0.5);
-      box-shadow: 0 2px 16px rgba(180, 160, 130, 0.12);
-    }
-
-    .navbar-inner {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 6px;
-      background: rgba(255, 252, 248, 0.5);
-      border: 1px solid rgba(220, 210, 195, 0.45);
-      border-radius: 999px;
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
-    }
-
-    .navbar a {
-      position: relative;
-      z-index: 1;
-      padding: 7px 20px;
-      border-radius: 999px;
-      color: #5a5248;
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: color 0.25s ease;
-    }
-
-    .navbar a:hover,
-    .navbar a.active {
-      color: #2e2a26;
-    }
-
-    .glass-pill {
-      position: absolute;
-      top: 6px;
-      left: 6px;
-      height: calc(100% - 12px);
-      border-radius: 999px;
-      background: rgba(255, 252, 248, 0.85);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(220, 210, 195, 0.7);
-      box-shadow:
-        0 2px 8px rgba(180, 160, 130, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-      transition: left 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-      pointer-events: none;
+      padding: 28px 0;
     }
 
     .page {
       width: min(860px, calc(100% - 32px));
-      margin: 0 auto 48px;
+      margin: 0 auto;
       background: rgba(255, 255, 255, 0.92);
       border-radius: 18px;
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
@@ -139,25 +73,13 @@
       .page {
         padding: 28px 20px;
       }
-
-      .navbar a {
-        padding: 7px 14px;
-      }
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-inner">
-      <div class="glass-pill" id="glassPill"></div>
-      <a href="index.html" data-nav>Home</a>
-      <a href="privacy.html" class="active" data-nav>Privacy</a>
-    </div>
-  </nav>
-
   <main class="page">
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: April 23, 2026</p>
+    <p class="updated">Last updated: May 1, 2026</p>
 
     <p>This Privacy Policy explains how this app and website handle information.</p>
 
@@ -186,42 +108,5 @@
       <p>This page is intended to provide a simple privacy statement for app review and public reference.</p>
     </div>
   </main>
-
-  <script>
-    const pill = document.getElementById('glassPill');
-    const links = document.querySelectorAll('[data-nav]');
-    const inner = document.querySelector('.navbar-inner');
-
-    function movePill(el) {
-      const innerRect = inner.getBoundingClientRect();
-      const elRect = el.getBoundingClientRect();
-      pill.style.left = (elRect.left - innerRect.left) + 'px';
-      pill.style.width = elRect.width + 'px';
-    }
-
-    const activeLink = document.querySelector('[data-nav].active');
-    if (activeLink) {
-      requestAnimationFrame(() => {
-        pill.style.transition = 'none';
-        movePill(activeLink);
-        requestAnimationFrame(() => {
-          pill.style.transition = '';
-        });
-      });
-    }
-
-    links.forEach(link => {
-      link.addEventListener('mouseenter', () => movePill(link));
-      link.addEventListener('click', () => {
-        links.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-      });
-    });
-
-    inner.addEventListener('mouseleave', () => {
-      const current = document.querySelector('[data-nav].active');
-      if (current) movePill(current);
-    });
-  </script>
 </body>
 </html>
